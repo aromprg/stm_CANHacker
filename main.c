@@ -6,8 +6,8 @@
 #include "can_bus.h"
 #include "canhacker_def.h"
 
-#define LED_PORT    GPIOC
-#define LED_PIN     13
+#define LED_PORT	GPIOC
+#define LED_PIN		13
 #define LED_ON		GPIO_SET_RESET(LED_PORT, LED_PIN, 0)	// Low
 #define LED_OFF		GPIO_SET_RESET(LED_PORT, LED_PIN, 1)	// Hi
 #define LED_TOGGLE	if (LED_PORT->IDR & (1 << LED_PIN)) {LED_ON;} else {LED_OFF;}
@@ -15,7 +15,7 @@
 volatile uint16_t timestamp = 0;
 
 uint8_t cmd_buf[CMD_BUFFER_LENGTH];	// command buffer
-uint8_t cmd_buf_ind = 0;			// command buffer index
+uint8_t cmd_buf_ind = 0;		// command buffer index
 
 uint8_t can_timestamp_enable = 0;
 
