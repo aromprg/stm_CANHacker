@@ -7,9 +7,9 @@
 #define CAN_REGS	CAN1
 
 #define SET_CAN_BIT_TIME(BRP, TS1, TS2, SJW)	( ((uint32_t)(BRP - 1) << 0U) \
-												| ((uint32_t)(TS1 - 1) << 16U) \
-												| ((uint32_t)(TS2 - 1) << 20U) \
-												| ((uint32_t)(SJW - 1) << 24U) )
+						| ((uint32_t)(TS1 - 1) << 16U) \
+						| ((uint32_t)(TS2 - 1) << 20U) \
+						| ((uint32_t)(SJW - 1) << 24U) )
 
 //******************************************************************************
 // CAN BaudRate calculation (for CAN_CLK = 36 MHz)
@@ -140,12 +140,12 @@ uint8_t CAN_GoNormalMode(void) {
 		return CAN_FAILED;
 	}
 
-	CAN_REGS->RF0R |= CAN_RF0R_RFOM0; 		// release fifo
+	CAN_REGS->RF0R |= CAN_RF0R_RFOM0; 	// release fifo
 
 	DINT;
 	NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);	// NVIC CAN rx FIFO_0 IRQ
 	NVIC_EnableIRQ(USB_HP_CAN1_TX_IRQn);	// NVIC CAN tx IRQ
-	CAN_REGS->IER |= CAN_IER_FMPIE0;		// enable CAN rx fifo pending isr
+	CAN_REGS->IER |= CAN_IER_FMPIE0;	// enable CAN rx fifo pending isr
 	EINT;
 
 	return CAN_OK;
@@ -176,7 +176,7 @@ void CAN_Filter_init(uint8_t filter_number, uint16_t FilterIdHigh, uint16_t Filt
 	// Filter Deactivation
 	CAN_REGS->FA1R &= ~filter_number_bit_pos;
 
-    // 32-bit scale for the filter
+	// 32-bit scale for the filter
 	CAN_REGS->FS1R |= filter_number_bit_pos;
 	// 32-bit identifier or First 32-bit identifier
 	CAN_REGS->sFilterRegister[filter_number].FR1 =
