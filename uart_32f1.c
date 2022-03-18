@@ -247,7 +247,7 @@ void uart2_init (uint32_t bps)
 	USART2->BRR = F_PCLK1 / bps;
 
 	/* Enable USART in N81, Enable RXNE irq */
-	USART1->CR1 = USART_CR1_RE | USART_CR1_TE | USART_CR1_RXNEIE | USART_CR1_UE;
+	USART2->CR1 = USART_CR1_RE | USART_CR1_TE | USART_CR1_RXNEIE | USART_CR1_UE;
 
 	/* Clear Tx/Rx fifo */
 	Fifo2.tri = 0; Fifo2.twi = 0; Fifo2.tct = 0;
